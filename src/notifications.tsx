@@ -1,4 +1,11 @@
-import messaging from '@react-native-firebase/messaging';
+import { getApp } from '@react-native-firebase/app';
+import {
+  getInitialNotification,
+  getMessaging,
+  getToken,
+  onMessage,
+  onNotificationOpenedApp,
+} from '@react-native-firebase/messaging';
 import { useCallback, useEffect } from 'react';
 import {
   Alert,
@@ -10,10 +17,13 @@ import {
   View,
 } from 'react-native';
 
+const app = getApp();
+const messagingInstance = getMessaging(app);
+
 export function NotificationsFirebaseCli() {
   const requestToken = useCallback(async () => {
     try {
-      const token = await messaging().getToken();
+      const token = await getToken(messagingInstance);
       console.log('FCM token:', token);
     } catch (error) {
       console.error('getToken error:', error);
@@ -52,14 +62,18 @@ export function NotificationsFirebaseCli() {
   useEffect(() => {
     requestPermissions();
 
-    const unsubscribeForeground = messaging().onMessage(async remoteMessage => {
-      console.log(
-        'Foreground message:',
-        JSON.stringify(remoteMessage, null, 2),
-      );
-    });
+    const unsubscribeForeground = onMessage(
+      messagingInstance,
+      async remoteMessage => {
+        console.log(
+          'Foreground message:',
+          JSON.stringify(remoteMessage, null, 2),
+        );
+      },
+    );
 
-    const unsubscribeOpened = messaging().onNotificationOpenedApp(
+    const unsubscribeOpened = onNotificationOpenedApp(
+      messagingInstance,
       remoteMessage => {
         console.log(
           'Opened from background:',
@@ -68,16 +82,14 @@ export function NotificationsFirebaseCli() {
       },
     );
 
-    messaging()
-      .getInitialNotification()
-      .then(remoteMessage => {
-        if (remoteMessage) {
-          console.log(
-            'Opened from quit state:',
-            JSON.stringify(remoteMessage, null, 2),
-          );
-        }
-      });
+    getInitialNotification(messagingInstance).then(remoteMessage => {
+      if (remoteMessage) {
+        console.log(
+          'Opened from quit state:',
+          JSON.stringify(remoteMessage, null, 2),
+        );
+      }
+    });
 
     return () => {
       unsubscribeForeground();

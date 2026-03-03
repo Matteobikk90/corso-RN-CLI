@@ -5,12 +5,12 @@
  * @format
  */
 
-import { NewAppScreen } from '@react-native/new-app-screen';
 import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
 import {
   SafeAreaProvider,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
+import { NotificationsFirebaseCli } from './src/notifications';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -28,10 +28,12 @@ function AppContent() {
 
   return (
     <View style={styles.container}>
-      <NewAppScreen
+      {/* <NewAppScreen
         templateFileName="App.tsx"
         safeAreaInsets={safeAreaInsets}
       />
+       */}
+      <NotificationsFirebaseCli />
     </View>
   );
 }

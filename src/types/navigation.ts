@@ -18,3 +18,10 @@ export type MapTabParamList = {
   Standard: undefined;
   Satellite: undefined;
 };
+
+export type MapTabItem = {
+  name: keyof MapTabParamList;
+  title: string;
+  icon: string;
+  component: ComponentType;
+};

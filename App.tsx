@@ -1,5 +1,6 @@
 import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import './global.css';
 import { NotificationsFirebaseCli } from './src/notifications';
 
 function App() {

@@ -1,4 +1,5 @@
 import { MapTabNavigator } from '../components/map';
+import { BiometricsScreen } from '../screens/biometrics';
 import type { DrawerItem } from '../types/navigation';
 
 export const drawerList: DrawerItem[] = [
@@ -7,11 +8,11 @@ export const drawerList: DrawerItem[] = [
     title: 'Mappa',
     component: MapTabNavigator,
   },
-  //   {
-  //     name: 'Biometrics',
-  //     title: 'Biometrics',
-  //     component: BiometricsScreen,
-  //   },
+  {
+    name: 'Biometrics',
+    title: 'Biometrics',
+    component: BiometricsScreen,
+  },
   //   {
   //     name: 'Haptics',
   //     title: 'Haptics',

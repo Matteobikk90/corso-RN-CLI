@@ -1,5 +1,6 @@
 import { MapTabNavigator } from '../components/map';
 import { BiometricsScreen } from '../screens/biometrics';
+import { ClipboardScreen } from '../screens/clipboard';
 import { HapticsScreen } from '../screens/haptics';
 import type { DrawerItem } from '../types/navigation';
 
@@ -19,11 +20,11 @@ export const drawerList: DrawerItem[] = [
     title: 'Haptics',
     component: HapticsScreen,
   },
-  //   {
-  //     name: 'Clipboard',
-  //     title: 'Clipboard',
-  //     component: ClipboardScreen,
-  //   },
+  {
+    name: 'Clipboard',
+    title: 'Clipboard',
+    component: ClipboardScreen,
+  },
   //   {
   //     name: 'QRScanner',
   //     title: 'QRScanner',

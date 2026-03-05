@@ -1,6 +1,5 @@
 import React from 'react';
-import { Pressable, Text, View } from 'react-native';
-import { trigger } from 'react-native-haptic-feedback';
+import { Pressable, Text, Vibration, View } from 'react-native';
 
 const patterns = [
   { label: '💬 Soft', type: 'soft' },
@@ -22,7 +21,7 @@ export function HapticsScreen() {
         <Pressable
           key={type}
           className="mt-4 rounded-2xl bg-indigo-500 px-10 py-4 active:opacity-70"
-          onPress={() => trigger(type)}
+          onPress={() => Vibration.vibrate([0, 200, 100, 200])}
         >
           <Text className="font-semibold text-white">{label}</Text>
         </Pressable>

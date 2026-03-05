@@ -6,8 +6,8 @@ import {
   getInitialNotificationData,
   subscribeForegroundMessages,
   subscribeNotificationOpened,
-} from './services/firebase/notifications';
-import { requestNotificationPermission } from './services/firebase/permissions';
+} from '../services/firebase/notifications';
+import { requestNotificationPermission } from '../services/firebase/permissions';
 
 export function NotificationsFirebaseCli() {
   useEffect(() => {
